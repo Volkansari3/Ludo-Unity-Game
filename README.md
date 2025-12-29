@@ -44,6 +44,7 @@ Improve bot AI decision-making
 - Add sound effects and animations
 - Add online multiplayer (optional)
 
+---
 
 ## 🎓 Academic Information
 
