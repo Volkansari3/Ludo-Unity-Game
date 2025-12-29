@@ -11,7 +11,7 @@ It includes both **player-controlled** and **AI-controlled (bot)** turns, dice m
 ![Main Menu Screenshot](Screenshots/main_menu.jpeg)
 
 ### 🎲 Game Board
-![Game Board Screenshot](Screenshots/game_board.jpeg)
+![Game Board Screenshot](Screenshots/game_scene.jpeg)
 
 > Screenshots are taken directly from in-game scenes.
 
