@@ -5,23 +5,35 @@ It includes both **player-controlled** and **AI-controlled (bot)** turns, dice m
 
 ---
 
+## 🖼️ Game Screenshots
+
+### 🎮 Main Menu
+![Main Menu Screenshot](Screenshots/main_menu.jpeg)
+
+### 🎲 Game Board
+![Game Board Screenshot](Screenshots/game_board.jpeg)
+
+> Screenshots are taken directly from in-game scenes.
+
+---
+
 ## 🕹️ Features
 
-- 🎲 Dice roll system with turn-based gameplay
-- 👥 Multiple players (Human + Bots)
-- ♟️ Pawn movement with spawn, path, and finish logic
-- 🏁 Finish area detection
-- 🧠 Basic bot turn handling
-- 🧭 Main Menu & In-Game Exit Button
-- 🎮 Scene-based game flow
+- 🎲 Dice roll system with turn-based gameplay  
+- 👥 Multiple players (Human + Bots)  
+- ♟️ Pawn movement with spawn, path, and finish logic  
+- 🏁 Finish area detection  
+- 🧠 Basic bot turn handling  
+- 🧭 Main Menu & In-Game Exit Button  
+- 🎮 Scene-based game flow  
 
 ---
 
 ## 🛠️ Built With
 
-- **Unity** (2021+ recommended)
-- **C#**
-- **Git & GitHub** for version control
+- **Unity** (2021+ recommended)  
+- **C#**  
+- **Git & GitHub** for version control  
 
 ---
 
