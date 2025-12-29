@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -216.42786}
+  m_AnchoredPosition: {x: 0, y: -430}
   m_SizeDelta: {x: 274.2266, y: 92.8247}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6175968
@@ -1299,7 +1299,7 @@ MonoBehaviour:
   m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 165cfa978ef7c9e4ba944b91e806f5e0, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -8151031826536829049, guid: 165cfa978ef7c9e4ba944b91e806f5e0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2297,7 +2297,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: play
+  m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 165cfa978ef7c9e4ba944b91e806f5e0, type: 2}
   m_sharedMaterial: {fileID: -8151031826536829049, guid: 165cfa978ef7c9e4ba944b91e806f5e0, type: 2}
@@ -2511,11 +2511,13 @@ MonoBehaviour:
     player is shown at the top of the screen.\n\n3. Roll the Dice : Tap Roll Dice
     to roll. You must roll a 6 to move a pawn out of the start area.\n\n4. Move Pawns
     : Tap a highlighted pawn to move it forward by the dice number.\n\n5. Capture
-    Pawns: Landing on an opponent\u2019s pawn sends it back to the start.\n\n6. Win
-    the Game: The first player to move all pawns to the center wins."
+    Pawns: Landing on an opponent\u2019s pawn sends it back to the start.\n\n6. Safe
+    Zone: Pawns cannot capture each other while they are on a player\u2019s starting
+    position tile.\n\n7. Win the Game: The first player who moves all of their pawns
+    into their own finish area first wins the game."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 165cfa978ef7c9e4ba944b91e806f5e0, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -8151031826536829049, guid: 165cfa978ef7c9e4ba944b91e806f5e0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2578,7 +2580,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: -154.20596}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1425786331
@@ -2721,7 +2723,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: settings
+  m_text: Settings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 165cfa978ef7c9e4ba944b91e806f5e0, type: 2}
   m_sharedMaterial: {fileID: -8151031826536829049, guid: 165cfa978ef7c9e4ba944b91e806f5e0, type: 2}
@@ -3831,7 +3833,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: credits
+  m_text: Credits
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 165cfa978ef7c9e4ba944b91e806f5e0, type: 2}
   m_sharedMaterial: {fileID: -8151031826536829049, guid: 165cfa978ef7c9e4ba944b91e806f5e0, type: 2}
@@ -3965,7 +3967,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: how to play
+  m_text: How to play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 165cfa978ef7c9e4ba944b91e806f5e0, type: 2}
   m_sharedMaterial: {fileID: -8151031826536829049, guid: 165cfa978ef7c9e4ba944b91e806f5e0, type: 2}
@@ -4028,7 +4030,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -14.71936, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

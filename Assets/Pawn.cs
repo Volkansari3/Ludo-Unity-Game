@@ -16,6 +16,9 @@ public class Pawn : MonoBehaviour
 
     public void Move(int steps, int startIndex)
     {
+        if (isFinished)
+            return;
+
         // 1️⃣ SPAWN'DAYSA
         if (!isInPlay)
         {
@@ -47,22 +50,32 @@ public class Pawn : MonoBehaviour
             (currentTileIndex + steps) % TileManager.Instance.tiles.Count;
 
         // 3️⃣ START'TAN AYRILDI MI?
+        // 3️⃣ START'TAN AYRILDI MI? (ilk defa start'tan çıkınca true olsun)
         if (currentTileIndex != owner.startTileIndex)
         {
             hasLeftStartThisLife = true;
         }
 
-        // 4️⃣ FINISH KONTROLÜ
-        if (
-            hasLeftStartThisLife &&
-            !isFinished &&
-            targetIndex == owner.startTileIndex
-        )
+        // 4️⃣ FINISH KONTROLÜ (start'ı GEÇTİ mi?)
+        if (hasLeftStartThisLife && !isFinished)
         {
-            isFinished = true;
-            Debug.Log(owner.playerName + " FINISHED!");
-            GameManager.Instance.FinishPawn(this);
-            return;
+            Debug.Log("FINISH CHECK ÇALIŞTI -> " + owner.playerName);
+
+            int n = TileManager.Instance.tiles.Count;
+
+            // currentTileIndex'ten startTileIndex'e ileri yönde kaç adım var?
+            int forwardToStart = (owner.startTileIndex - currentTileIndex + n) % n;
+
+            // Eğer forwardToStart 0 ise, şu an start'tayız demek. Bu durumda finish saymayalım.
+            // Start'tan ayrıldıktan sonra tekrar start'a gelince veya geçince bitirsin:
+            if (forwardToStart != 0 && forwardToStart <= steps)
+            {
+
+                Debug.Log(owner.playerName + " FINISHED (passed start)!");
+                GameManager.Instance.FinishPawn(this);
+                return;
+
+            }
         }
 
         // 5️⃣ NORMAL İLERLEME

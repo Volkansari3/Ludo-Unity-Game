@@ -1,7 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +14,7 @@ public class GameManager : MonoBehaviour
     public Pawn pawnPrefabAshigaru;  // Ashigaru
     public Pawn pawnPrefabPolice;    // Police Officer
     public Pawn pawnPrefabSkeleton;   // Skeleton
-    
+
 
     public GameObject rollDiceButton;
 
@@ -32,6 +34,9 @@ public class GameManager : MonoBehaviour
     public FinishArea yellowFinishArea;
 
     public TextMeshProUGUI turnText;
+    public Image diceImage;
+    public Sprite[] diceFaces; // 0 = 1, 1 = 2 ... 5 = 6
+
 
 
 
@@ -102,18 +107,9 @@ public class GameManager : MonoBehaviour
 
         players.Add(new Player
         {
-            playerName = "Player Police Officer",
-            isBot = true,
-            spawnPoint = greenSpawn,
-            startTileIndex = 13,
-            color = PlayerColor.Blue
-        });
-
-        players.Add(new Player
-        {
             playerName = "Player Skeleton",
             isBot = true,
-            spawnPoint = yellowSpawn,
+            spawnPoint = greenSpawn,
             startTileIndex = 26,
             color = PlayerColor.Green
         });
@@ -122,9 +118,18 @@ public class GameManager : MonoBehaviour
         {
             playerName = "Player Ashigaru",
             isBot = true,
-            spawnPoint = blueSpawn,
+            spawnPoint = yellowSpawn,
             startTileIndex = 39,
             color = PlayerColor.Yellow
+        });
+
+        players.Add(new Player
+        {
+            playerName = "Police Officer",
+            isBot = true,
+            spawnPoint = blueSpawn,
+            startTileIndex = 13,
+            color = PlayerColor.Blue
         });
     }
 
@@ -192,7 +197,7 @@ public class GameManager : MonoBehaviour
         }
 
 
-        // Buton sadece ger�ek oyuncuda a��k olsun
+        // Buton sadece gerçek oyuncuda açık olsun
         rollDiceButton.SetActive(!nextPlayer.isBot);
 
         if (nextPlayer.isBot)
@@ -210,12 +215,12 @@ public class GameManager : MonoBehaviour
 
     Pawn GetPawnToMove(Player player, int roll)
     {
-        // 6 geldiyse, spawn'da pawn varsa onu ��kar
+        // 6 geldiyse, spawn'da pawn varsa onu çıkar
         if (roll == 6)
         {
             foreach (Pawn pawn in player.pawns)
             {
-                if (!pawn.isInPlay)
+                if (!pawn.isInPlay && !pawn.isFinished)
                 {
                     return pawn;
                 }
@@ -225,59 +230,20 @@ public class GameManager : MonoBehaviour
         // Aksi halde oyunda olan ilk pawn'u oynat
         foreach (Pawn pawn in player.pawns)
         {
-            if (pawn.isInPlay)
+            if (pawn.isInPlay && !pawn.isFinished)
             {
                 return pawn;
             }
         }
 
-        // Hi� oynayacak pawn yoksa
+        // Hiç oynayacak pawn yoksa
         return null;
     }
 
 
     void TakeTurn(Player player)
     {
-        waitingForInput = false;
-
-        int roll = dice.Roll();
-        Debug.Log(player.playerName + " rolled " + roll);
-
-        Pawn pawnToMove = GetPawnToMove(player, roll);
-
-        if (pawnToMove != null)
-        {
-            pawnToMove.Move(roll, player.startTileIndex);
-            CheckPawnCollision(pawnToMove);
-        }
-
-        if (roll == 6)
-        {
-            sixRollCount++;
-
-            if (sixRollCount >= 2)
-            {
-                sixRollCount = 0;
-                NextTurn();
-            }
-            else
-            {
-                // 6 geldi ama tekrar oynama
-                if (player.isBot)
-                {
-                    Invoke(nameof(BotTurn), 1f); // BOT otomatik devam
-                }
-                else
-                {
-                    waitingForInput = true; // PLAYER bekler
-                }
-            }
-        }
-        else
-        {
-            sixRollCount = 0;
-            NextTurn();
-        }
+        StartCoroutine(TakeTurnRoutine(player));
     }
 
     void CheckPawnCollision(Pawn movedPawn)
@@ -294,7 +260,7 @@ public class GameManager : MonoBehaviour
 
                 if (otherPawn.currentTileIndex == movedPawn.currentTileIndex)
                 {
-                    // Safe tile kontrol�
+                    // Safe tile kontrolü
                     if (TileManager.Instance.safeTileIndexes.Contains(movedPawn.currentTileIndex))
                     {
                         Debug.Log("Safe tile - no capture");
@@ -313,7 +279,7 @@ public class GameManager : MonoBehaviour
         pawn.isInPlay = false;
         pawn.currentTileIndex = -1;
 
-        // Spawn plane merkezine g�nder
+        // Spawn plane merkezine gönder
         pawn.hasLeftStartThisLife = false; // bu hayat bitti
         pawn.transform.position = pawn.spawnPosition;
 
@@ -342,7 +308,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("GAME OVER! Winner: " + winner.playerName);
 
-        // �imdilik oyunu durdural�m
+        // Şimdilik oyunu durduralım
         Time.timeScale = 0f;
     }
 
@@ -378,7 +344,7 @@ public class GameManager : MonoBehaviour
     {
         Player currentPlayer = players[currentPlayerIndex];
 
-        // Sadece ger�ek oyuncu i�in
+        // Sadece gerçek oyuncu için
         if (currentPlayer.isBot)
             return;
 
@@ -387,6 +353,7 @@ public class GameManager : MonoBehaviour
 
         AudioManager.Instance.PlayDice();
 
+        rollDiceButton.SetActive(false);
         TakeTurn(currentPlayer);
     }
 
@@ -411,9 +378,79 @@ public class GameManager : MonoBehaviour
         return null;
     }
 
+    IEnumerator PlayDiceAnimation(int finalRoll)
+    {
+        float duration = 1.5f;   // daha uzun
+        float elapsed = 0f;
 
+        while (elapsed < duration)
+        {
+            int randomFace = Random.Range(0, diceFaces.Length);
+            diceImage.sprite = diceFaces[randomFace];
 
+            Debug.Log("Dice anim face: " + randomFace);
 
+            elapsed += 0.25f;
+            yield return new WaitForSeconds(0.25f);
+        }
+
+        diceImage.sprite = diceFaces[finalRoll - 1];
+        Debug.Log("Final dice: " + finalRoll);
+    }
+
+    IEnumerator TakeTurnRoutine(Player player)
+    {
+        waitingForInput = false;
+
+        int roll = dice.Roll();
+
+        // 1️⃣ Zar animasyonu
+        yield return StartCoroutine(PlayDiceAnimation(roll));
+
+        // 2️⃣ Kim ne attı yazısı için kısa bekleme
+        yield return new WaitForSeconds(0.8f);
+
+        // 3️⃣ Pawn seç & hareket
+        Pawn pawnToMove = GetPawnToMove(player, roll);
+        if (pawnToMove != null)
+        {
+            pawnToMove.Move(roll, player.startTileIndex);
+            CheckPawnCollision(pawnToMove);
+        }
+
+        // 4️⃣ 6 kontrolü ve turn yönetimi
+        if (roll == 6)
+        {
+            sixRollCount++;
+
+            if (sixRollCount >= 2)
+            {
+                sixRollCount = 0;
+                yield return new WaitForSeconds(0.5f);
+                NextTurn();
+            }
+            else
+            {
+                if (player.isBot)
+                {
+                    yield return new WaitForSeconds(0.8f);
+                    TakeTurn(player); // BOT tekrar atsın
+                }
+                else
+                {
+                    waitingForInput = true;
+                    rollDiceButton.SetActive(true); // 🔥 ÖNEMLİ
+                }
+            }
+        }
+
+        else
+        {
+            sixRollCount = 0;
+            yield return new WaitForSeconds(0.5f);
+            NextTurn();
+        }
+    }
 
 
 }
