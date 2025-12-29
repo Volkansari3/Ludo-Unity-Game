@@ -1,0 +1,78 @@
+# 🎲 Ludo Unity Game
+
+This project is a **Ludo-style board game** developed with **Unity**.  
+It includes both **player-controlled** and **AI-controlled (bot)** turns, dice mechanics, pawn movement logic, and a simple main menu system.
+
+---
+
+## 🕹️ Features
+
+- 🎲 Dice roll system with turn-based gameplay
+- 👥 Multiple players (Human + Bots)
+- ♟️ Pawn movement with spawn, path, and finish logic
+- 🏁 Finish area detection
+- 🧠 Basic bot turn handling
+- 🧭 Main Menu & In-Game Exit Button
+- 🎮 Scene-based game flow
+
+---
+
+## 🛠️ Built With
+
+- **Unity** (2021+ recommended)
+- **C#**
+- **Git & GitHub** for version control
+
+---
+
+## 📁 Project Structure
+
+Assets/
+├─ Scripts/
+│ ├─ GameManager.cs
+│ ├─ Pawn.cs
+│ ├─ ExitButton.cs
+├─ Scenes/
+│ ├─ MainMenu.unity
+│ ├─ SampleScene.unity
+├─ Sprites/
+└─ Models/
+
+Packages/
+ProjectSettings/
+
+yaml
+Kodu kopyala
+
+---
+
+## 🚀 How to Run the Project
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Volkansari3/Ludo-Unity-Game.git
+Open Unity Hub
+
+Click Open Project
+
+Select the project root folder
+
+Open MainMenu.unity scene
+
+Press ▶ Play
+
+🔄 Version Control Notes
+Unity auto-generated folders like Library/, Temp/, and Logs/ are ignored via .gitignore
+
+Large texture files may trigger GitHub size warnings
+
+Git LFS can be used for large assets if needed
+
+📌 Known Improvements / TODO
+Improve bot AI decision-making
+
+Optimize texture sizes
+
+Add sound effects and animations
+
+Add online multiplayer (optional)
