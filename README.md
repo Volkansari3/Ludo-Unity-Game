@@ -28,24 +28,18 @@ It includes both **player-controlled** and **AI-controlled (bot)** turns, dice m
 ## 📁 Project Structure
 
 Assets/
-
-├─ Scripts/
-
-│ ├─ GameManager.cs
-
-│ ├─ Pawn.cs
-│ ├─ ExitButton.cs
-├─ Scenes/
-│ ├─ MainMenu.unity
-│ ├─ SampleScene.unity
-├─ Sprites/
-└─ Models/
+   ├─ Scripts/
+      │ ├─ GameManager.cs
+      │ ├─ Pawn.cs
+      │ ├─ ExitButton.cs
+   ├─ Scenes/
+      │ ├─ MainMenu.unity
+      │ ├─ SampleScene.unity
+   ├─ Sprites/
+   └─ Models/
 
 Packages/
 ProjectSettings/
-
-yaml
-Kodu kopyala
 
 ---
 
@@ -79,3 +73,12 @@ Optimize texture sizes
 Add sound effects and animations
 
 Add online multiplayer (optional)
+
+
+## 🎓 Academic Information
+
+This project was developed as a **term project assignment** for the  
+**ADA 410 – Game Development** course.
+
+It is intended for **educational purposes only** and demonstrates the use of  
+Unity, C#, game logic, and version control with GitHub within the scope of the course.
