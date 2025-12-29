@@ -28,8 +28,11 @@ It includes both **player-controlled** and **AI-controlled (bot)** turns, dice m
 ## 📁 Project Structure
 
 Assets/
+
 ├─ Scripts/
+
 │ ├─ GameManager.cs
+
 │ ├─ Pawn.cs
 │ ├─ ExitButton.cs
 ├─ Scenes/
