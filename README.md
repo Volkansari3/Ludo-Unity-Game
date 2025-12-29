@@ -40,11 +40,9 @@ It includes both **player-controlled** and **AI-controlled (bot)** turns, dice m
 📌 Known Improvements / TODO
 Improve bot AI decision-making
 
-Optimize texture sizes
-
-Add sound effects and animations
-
-Add online multiplayer (optional)
+- Optimize texture sizes
+- Add sound effects and animations
+- Add online multiplayer (optional)
 
 
 ## 🎓 Academic Information
