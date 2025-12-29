@@ -30,22 +30,12 @@ It includes both **player-controlled** and **AI-controlled (bot)** turns, dice m
 1. Clone the repository:
    ```bash
    git clone https://github.com/Volkansari3/Ludo-Unity-Game.git
-Open Unity Hub
-
-Click Open Project
-
-Select the project root folder
-
-Open MainMenu.unity scene
-
-Press ▶ Play
-
-🔄 Version Control Notes
-Unity auto-generated folders like Library/, Temp/, and Logs/ are ignored via .gitignore
-
-Large texture files may trigger GitHub size warnings
-
-Git LFS can be used for large assets if needed
+   
+- Open Unity Hub
+- Click Open Project
+- Select the project root folder
+- Open MainMenu.unity scene
+- Press ▶ Play
 
 📌 Known Improvements / TODO
 Improve bot AI decision-making
